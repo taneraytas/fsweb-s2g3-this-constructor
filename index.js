@@ -14,9 +14,45 @@
         + Bu `isim` ve `yas` i içeren bir string döndürmelidir Örnek: "Mary, 50"
 */
 
-function Kisi(/* kodlar buraya */) {
-  /* kodlar buraya */
+/*function Kullanici(isim){
+  this.isim = isim;
+  this.yoneticiMi = false;
 }
+
+let adam = new Kullanici("İhsan");
+
+console.log(adam.isim);
+let adam2 ={
+  isim : "Emre",
+  yoneticiMi : true,
+  yazdir : function(){
+
+    return "ismim : " + this.isim;
+  }
+}
+adam2.isim = "Ahmet"
+console.log(adam2.yazdir());*/
+
+
+
+function Kisi(isim,yas) {
+  this.isim = isim;
+  this.yas = yas;
+  this.mide = [];
+  this.ye = function(yemek){
+
+    if (this.mide.length<11){
+       this.mide.push(yemek)
+    }
+  }
+  this.bosalt = function(){
+     this.mide = [];
+  }
+  this.toString = function(){
+    return `${this.isim} , ${this.yas}`
+  }
+}
+
 
 
 /*
@@ -35,9 +71,31 @@ function Kisi(/* kodlar buraya */) {
         +  "x milde benzinim bitti!" x değişkeni `odometer` daki sayı olmalıdır.
 */
 
-function Araba(/* kodlar buraya */) {
-  /* kodlar buraya */
+function Araba(model,tuketim) {
+  this.model =model;
+  this.milesPerGallon = tuketim;
+  this.tank = 0;
+  this.odometer = 0;
+  this.fill = function(gallons){
+    this.tank += gallons;
+  }
+  this.drive = function(distance){
+    this.odometer += distance;
+    this.tank -= distance/this.milesPerGallon;
+    if (this.tank<=0){
+      const ekstraMil = this.tank*this.milesPerGallon;
+      this.odometer += ekstraMil;
+      this.tank=0;
+      console.log( `${this.odometer} milde benzinim bitti!`)
+    }
+  }
 }
+let vw = new Araba ('Passat',15)
+vw.fill(65);
+vw.drive(125);
+vw.drive(950);
+console.log(vw.tank);
+console.log(vw.odometer);
 
 
 /* 
